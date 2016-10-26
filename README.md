@@ -1,2 +1,4 @@
 # Spotted
-iOS Trend Tagging App
+An iOS Trend Tagging App
+
+### Developed by: Evan Grote and Chris Boswell

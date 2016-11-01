@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		20B045121DC0618B00054293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B045111DC0618B00054293 /* AppDelegate.swift */; };
 		20B045141DC0618B00054293 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B045131DC0618B00054293 /* ViewController.swift */; };
-		20B045171DC0618B00054293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B045151DC0618B00054293 /* Main.storyboard */; };
+		20B045171DC0618B00054293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B045151DC0618B00054293 /* Main.storyboard */; settings = {ASSET_TAGS = (FollowingSegue, ); }; };
 		20B045191DC0618B00054293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B045181DC0618B00054293 /* Assets.xcassets */; };
 		20B0451C1DC0618B00054293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B0451A1DC0618B00054293 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -90,12 +90,16 @@
 		20B045061DC0618A00054293 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					FollowingSegue,
+				);
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Evan Grote";
 				TargetAttributes = {
 					20B0450D1DC0618A00054293 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 625732G463;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -203,7 +207,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -246,7 +250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -258,7 +262,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,7 +277,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					20B0450D1DC0618A00054293 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 625732G463;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -258,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;
@@ -271,6 +273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;

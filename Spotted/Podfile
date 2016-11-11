@@ -7,5 +7,6 @@ target 'Spotted' do
 
   # Pods for Spotted
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end

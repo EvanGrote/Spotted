@@ -178,12 +178,12 @@
         <!--Tag-->
         <scene sceneID="R00-Ez-Lpc">
             <objects>
-                <viewController id="zC3-YD-phS" sceneMemberID="viewController">
+                <viewController id="zC3-YD-phS" customClass="UploadPostViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FdX-DN-kik"/>
                         <viewControllerLayoutGuide type="bottom" id="xGq-G6-nq6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vao-wO-XmZ" customClass="UploadPost">
+                    <view key="view" contentMode="scaleToFill" id="Vao-wO-XmZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -245,6 +245,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="zC3-YD-phS" eventType="touchUpInside" id="QZw-47-oQI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

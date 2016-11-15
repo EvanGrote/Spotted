@@ -12,6 +12,9 @@
 		20B045171DC0618B00054293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B045151DC0618B00054293 /* Main.storyboard */; settings = {ASSET_TAGS = (FollowingSegue, ); }; };
 		20B045191DC0618B00054293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B045181DC0618B00054293 /* Assets.xcassets */; };
 		20B0451C1DC0618B00054293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B0451A1DC0618B00054293 /* LaunchScreen.storyboard */; };
+		97BA59448C1258C78E09C24E /* Pods_Spotted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F8D75AA17B756494975266 /* Pods_Spotted.framework */; };
+		9D3C426D1DC8750300D0644C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */; };
+		9DD95A431DD59BC800C394BE /* UploadPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD95A421DD59BC800C394BE /* UploadPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,11 @@
 		20B045181DC0618B00054293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20B0451B1DC0618B00054293 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20B0451D1DC0618B00054293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spotted/Pods-Spotted.release.xcconfig"; sourceTree = "<group>"; };
+		68F8D75AA17B756494975266 /* Pods_Spotted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9DD95A421DD59BC800C394BE /* UploadPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
+		C4E84BA0E87D9012F1CFF2AD /* Pods-Spotted.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spotted/Pods-Spotted.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BA59448C1258C78E09C24E /* Pods_Spotted.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E33D7A1E5188E141741DE36 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4E84BA0E87D9012F1CFF2AD /* Pods-Spotted.debug.xcconfig */,
+				5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		20B045051DC0618A00054293 = {
 			isa = PBXGroup;
 			children = (
 				20B045101DC0618B00054293 /* Spotted */,
 				20B0450F1DC0618B00054293 /* Products */,
+				0E33D7A1E5188E141741DE36 /* Pods */,
+				D3F69729B35F359D18463FF7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +74,24 @@
 		20B045101DC0618B00054293 /* Spotted */ = {
 			isa = PBXGroup;
 			children = (
+				9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */,
 				20B045111DC0618B00054293 /* AppDelegate.swift */,
 				20B045131DC0618B00054293 /* ViewController.swift */,
 				20B045151DC0618B00054293 /* Main.storyboard */,
 				20B045181DC0618B00054293 /* Assets.xcassets */,
 				20B0451A1DC0618B00054293 /* LaunchScreen.storyboard */,
 				20B0451D1DC0618B00054293 /* Info.plist */,
+				9DD95A421DD59BC800C394BE /* UploadPostViewController.swift */,
 			);
 			path = Spotted;
+			sourceTree = "<group>";
+		};
+		D3F69729B35F359D18463FF7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68F8D75AA17B756494975266 /* Pods_Spotted.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20B045201DC0618B00054293 /* Build configuration list for PBXNativeTarget "Spotted" */;
 			buildPhases = (
+				B62FBE9CB8E81AF38383510C /* [CP] Check Pods Manifest.lock */,
 				20B0450A1DC0618A00054293 /* Sources */,
 				20B0450B1DC0618A00054293 /* Frameworks */,
 				20B0450C1DC0618A00054293 /* Resources */,
+				31D8F072C483D6D140192819 /* [CP] Embed Pods Frameworks */,
+				6A1EDA9B624833C4D6E1BE36 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,16 +163,66 @@
 				20B0451C1DC0618B00054293 /* LaunchScreen.storyboard in Resources */,
 				20B045191DC0618B00054293 /* Assets.xcassets in Resources */,
 				20B045171DC0618B00054293 /* Main.storyboard in Resources */,
+				9D3C426D1DC8750300D0644C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31D8F072C483D6D140192819 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spotted/Pods-Spotted-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A1EDA9B624833C4D6E1BE36 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spotted/Pods-Spotted-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B62FBE9CB8E81AF38383510C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		20B0450A1DC0618A00054293 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD95A431DD59BC800C394BE /* UploadPostViewController.swift in Sources */,
 				20B045141DC0618B00054293 /* ViewController.swift in Sources */,
 				20B045121DC0618B00054293 /* AppDelegate.swift in Sources */,
 			);
@@ -260,13 +343,14 @@
 		};
 		20B045211DC0618B00054293 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4E84BA0E87D9012F1CFF2AD /* Pods-Spotted.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uiowa.Spotted;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -275,13 +359,14 @@
 		};
 		20B045221DC0618B00054293 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 625732G463;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uiowa.edu.Spotted;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uiowa.Spotted;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

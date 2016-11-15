@@ -28,6 +28,27 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             theImageView.contentMode = .scaleAspectFit
             theImageView.image = pickedImage
+            var compressedImage = NSData()
+            compressedImage = UIImageJPEGRepresentation(pickedImage, 0.8)! as NSData
+            let filePath = "/userPhoto"
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpg"
+            var ref: FIRStorageReference
+            ref = FIRStorage.storage().reference()
+            ref.child(filePath).put(compressedImage as Data,metadata:metaData){(metaData,error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    //store downloadURL
+                    let downloadURL = metaData!.downloadURL()!.absoluteString
+                    //store downloadURL at database
+                    var databaseRef: FIRDatabaseReference!
+                    databaseRef = FIRDatabase.database().reference()
+                    databaseRef.child("posts").child("postImage").updateChildValues(["userPhoto": downloadURL])
+                }
+                
+            }
         }
         
         dismiss(animated: true, completion: nil)

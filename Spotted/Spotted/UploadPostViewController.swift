@@ -12,6 +12,7 @@ import Firebase
 class UploadPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
+    var imageSelected:Bool = false
     
     @IBOutlet weak var theImageView: UIImageView!
     @IBOutlet weak var tagTextField: UITextField!
@@ -33,8 +34,10 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            print("displaying selected image in imageView")
             theImageView.contentMode = .scaleAspectFit
             theImageView.image = pickedImage
+            imageSelected = true
         }
         
         dismiss(animated: true, completion: nil)
@@ -45,31 +48,44 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        var ref: FIRDatabaseReference!
-        var timeStamp = String(round(NSDate().timeIntervalSince1970))
-        let timeStampFormatted = String(timeStamp.characters.dropLast(2))
-        let tag = tagTextField.text
-        let description = descriptionTextField.text
-        
-        ref = FIRDatabase.database().reference()
-        
-        var compressedImage = NSData()
-        compressedImage = UIImageJPEGRepresentation(theImageView.image!, 0.8)! as NSData
-        let filePath = "/\(timeStampFormatted)"
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpg"
-        var storageRef: FIRStorageReference
-        storageRef = FIRStorage.storage().reference()
-        storageRef.child(filePath).put(compressedImage as Data,metadata:metaData){(metaData,error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                //store downloadURL
-                let downloadURL = metaData!.downloadURL()!.absoluteString
-                //store downloadURL at database
-                ref.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"userPhoto": downloadURL])
+        if imageSelected {
+            print("submit button pressed, uploading post")
+            var databaseRef: FIRDatabaseReference!
+            var timeStamp = String(round(NSDate().timeIntervalSince1970))
+            let timeStampFormatted = String(timeStamp.characters.dropLast(2))
+            let tag = tagTextField.text
+            let description = descriptionTextField.text
+            let filePath = "/images/\(timeStampFormatted)"
+            
+            //database reference
+            databaseRef = FIRDatabase.database().reference()
+            
+            //compresses the image
+            var compressedImage = NSData()
+            compressedImage = UIImageJPEGRepresentation(theImageView.image!, 0.7)! as NSData
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpg"
+            //storage reference
+            var storageRef: FIRStorageReference
+            storageRef = FIRStorage.storage().reference()
+            print("uploading image")
+            storageRef.child(filePath).put(compressedImage as Data,metadata:metaData){(metaData,error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    //store path
+                    print("Storing image \(timeStampFormatted)")
+                    print("image stored at: \(metaData?.path!)")
+                    //store path at database
+                    databaseRef.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"userPhoto": metaData?.path!])
+                }
             }
+        } else {
+            print("No image selected")
+            let alert = UIAlertController(title: "Error", message: "Please select an image", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

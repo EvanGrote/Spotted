@@ -11,12 +11,18 @@ import Firebase
 
 class UploadPostViewController: UIViewController {
     
+    @IBOutlet weak var tagTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         var ref: FIRDatabaseReference!
+        var timeStamp = String(round(NSDate().timeIntervalSince1970))
+        let timeStampFormatted = String(timeStamp.characters.dropLast(2))
+        let tag = tagTextField.text
+        let description = descriptionTextField.text
         
         ref = FIRDatabase.database().reference()
-        ref.child("posts").child("post").setValue(["tag":"Beyonce","user":"1234","description":"picture of Beyonc"])
+        ref.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description])
     }
     
     override func viewDidLoad() {

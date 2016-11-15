@@ -104,6 +104,12 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         view.endEditing(true)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {        
+        self.addTagsTextField.text = ""
+        self.descriptionTextField.text = ""
+        self.theImageView.image = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -27,10 +27,13 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func takePictureButtonPressed(_ sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .camera
-        
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.cameraCaptureMode = .photo
+            imagePicker.modalPresentationStyle = .fullScreen
+            present(imagePicker,animated: true,completion: nil)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

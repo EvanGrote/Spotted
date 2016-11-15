@@ -9,13 +9,14 @@
 import UIKit
 import Firebase
 
-class UploadPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let imagePicker = UIImagePickerController()
     var imageSelected:Bool = false
     
     @IBOutlet weak var theImageView: UIImageView!
     @IBOutlet weak var tagTextField: UITextField!
+    @IBOutlet weak var addTagsTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBAction func uploadImageButtonPressed(_ sender: AnyObject) {
@@ -89,11 +90,28 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addTagsTextField.resignFirstResponder()
+        descriptionTextField.resignFirstResponder()
+        return true
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         imagePicker.delegate = self
+        self.addTagsTextField.delegate = self
+        self.descriptionTextField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UploadPostViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {

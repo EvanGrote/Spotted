@@ -240,7 +240,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Tag" image="TagIcon" id="1kv-j1-51r"/>
                     <connections>
-                        <outlet property="descriptionTextField" destination="ZKD-et-T3Y" id="amC-jK-nVJ"/>
+                        <outlet property="addTagsTextField" destination="580-Sh-xMl" id="Zc0-0D-SsM"/>
+                        <outlet property="descriptionTextField" destination="ZKD-et-T3Y" id="Sh8-2M-jXl"/>
                         <outlet property="tagTextField" destination="580-Sh-xMl" id="2za-Ud-tJw"/>
                         <outlet property="theImageView" destination="6IR-n3-A3C" id="t8X-Pz-5SE"/>
                     </connections>

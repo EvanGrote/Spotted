@@ -22,21 +22,19 @@ class FollowingTableViewController: UIViewController {
             
             var databasePosts: [UserPost] = []
             
-            print("Still alive")
             for post in snapshot.children {
-                print((post as! FIRDataSnapshot).childSnapshot(forPath: "tag"))
+                let description = (post as! FIRDataSnapshot).childSnapshot(forPath: "description").value!
+                let tag = (post as! FIRDataSnapshot).childSnapshot(forPath: "tag").value!
+                let user = (post as! FIRDataSnapshot).childSnapshot(forPath: "user").value!
+                let userPhoto = (post as! FIRDataSnapshot).childSnapshot(forPath: "userPhoto").value!
                 
-                print("I cannot die")
-                //let individualPost = UserPost(snapshot: post as! FIRDataSnapshot)
-                print("Creates some shit")
-                //databasePosts.append(individualPost)
-                print("Everything is fine")
+                let individualPost = UserPost.init(postDescription: description as! String, postTags: tag as! String, posterId: user as! String, postPhoto: userPhoto as! String)
+                
+                individualPost.printPost()
+                databasePosts.append(individualPost)
             }
             
-            print("Try to kill me")
             self.userPosts = databasePosts
-            //self.theTableView.reloadData()
-            print("Probably dead now")
         })
         
     }

@@ -28,4 +28,28 @@ class UserPost {
         self.user = snapshot.value(forKey: "user") as! String
         self.photo = snapshot.value(forKey: "userPhoto") as! String
     }
+    
+    func printDescription() -> Void {
+        print(self.description)
+    }
+    
+    func printTags() -> Void {
+        print(self.tags)
+    }
+    
+    func printUser() -> Void {
+        print(self.user)
+    }
+    
+    func printPhoto() -> Void {
+        print(self.photo)
+    }
+    
+    func printPost() -> Void {
+        print("Description: \(self.description)")
+        print("Tags:        \(self.tags)")
+        print("User:        \(self.user)")
+        print("Photo:       \(self.photo)")
+        print("")
+    }
 }

@@ -8,9 +8,25 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
-class FollowingTableViewController: UIViewController {
+class CustomTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellImageView: UIImageView!
+    @IBOutlet weak var cellTagLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+}
+
+class FollowingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var customTableCell: UITableView!
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
     
@@ -35,8 +51,33 @@ class FollowingTableViewController: UIViewController {
             }
             
             self.userPosts = databasePosts
+            
+            self.theTableView.beginUpdates()
+            for i in 0...(self.userPosts.count-1) {
+                self.theTableView.insertRows(at: [
+                    NSIndexPath(row: i, section: 0) as IndexPath
+                    ], with: .automatic)
+            }
+            self.theTableView.endUpdates()
         })
         
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
+        //cell.cellImageView = self.userPosts[indexPath.row].photo
+        cell.cellTagLabel.text = self.userPosts[indexPath.row].tags
+        
+        return cell
     }
     
     override func viewDidLoad() {

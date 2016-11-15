@@ -11,11 +11,11 @@ import Firebase
 
 class UserPost {
     var description: String
-    var tags: [String]
+    var tags: String
     var user: String
     var photo: String
     
-    init(postDescription: String, postTags: [String], posterId: String, postPhoto: String) {
+    init(postDescription: String, postTags: String, posterId: String, postPhoto: String) {
         self.description = postDescription
         self.tags = postTags
         self.user = posterId
@@ -24,7 +24,7 @@ class UserPost {
     
     init(snapshot: FIRDataSnapshot) {
         self.description = snapshot.value(forKey: "description") as! String
-        self.tags = snapshot.value(forKey: "tag") as! [String]
+        self.tags = snapshot.value(forKey: "tag") as! String
         self.user = snapshot.value(forKey: "user") as! String
         self.photo = snapshot.value(forKey: "userPhoto") as! String
     }

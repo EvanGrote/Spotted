@@ -138,7 +138,7 @@
 				TargetAttributes = {
 					20B0450D1DC0618A00054293 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 625732G463;
+						DevelopmentTeam = 628W3F954J;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -354,7 +354,7 @@
 			baseConfigurationReference = C4E84BA0E87D9012F1CFF2AD /* Pods-Spotted.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 625732G463;
+				DEVELOPMENT_TEAM = 628W3F954J;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -370,7 +370,7 @@
 			baseConfigurationReference = 5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 625732G463;
+				DEVELOPMENT_TEAM = 628W3F954J;
 				INFOPLIST_FILE = Spotted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

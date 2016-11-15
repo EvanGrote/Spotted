@@ -24,6 +24,13 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func takePictureButtonPressed(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .camera
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             theImageView.contentMode = .scaleAspectFit

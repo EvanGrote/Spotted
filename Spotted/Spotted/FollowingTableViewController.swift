@@ -34,7 +34,8 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
         let ref = FIRDatabase.database().reference(withPath: "posts")
         
         ref.observe(.value, with: { snapshot in
-            //print(snapshot.value!)
+            self.userPosts = []
+            self.theTableView.reloadData()
             
             var databasePosts: [UserPost] = []
             
@@ -52,13 +53,15 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
             
             self.userPosts = databasePosts
             
-            self.theTableView.beginUpdates()
-            for i in 0...(self.userPosts.count-1) {
-                self.theTableView.insertRows(at: [
-                    NSIndexPath(row: i, section: 0) as IndexPath
-                    ], with: .automatic)
+            if !(self.userPosts.isEmpty) {
+                self.theTableView.beginUpdates()
+                for i in 0...(self.userPosts.count-1) {
+                    self.theTableView.insertRows(at: [
+                        NSIndexPath(row: i, section: 0) as IndexPath
+                        ], with: .automatic)
+                }
+                self.theTableView.endUpdates()
             }
-            self.theTableView.endUpdates()
         })
         
     }

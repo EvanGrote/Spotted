@@ -77,7 +77,20 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
-        //cell.cellImageView = self.userPosts[indexPath.row].photo
+        let photoFilePath = self.userPosts[indexPath.row].photo
+        let storageRef = FIRStorage.storage().reference().child(photoFilePath)
+        
+        storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) -> Void in
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                // Data for "images/island.jpg" is returned
+                // ... let islandImage: UIImage! = UIImage(data: data!)
+                cell.cellImageView.image = UIImage(data: data!)
+            }
+        }
+        
+        //cell.cellImageView =
         cell.cellTagLabel.text = self.userPosts[indexPath.row].tags
         
         return cell

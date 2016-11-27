@@ -14,6 +14,7 @@
 		20B045191DC0618B00054293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B045181DC0618B00054293 /* Assets.xcassets */; };
 		20B0451C1DC0618B00054293 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B0451A1DC0618B00054293 /* LaunchScreen.storyboard */; };
 		20C2BD541DDAEE5200A1A43F /* UserPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C2BD531DDAEE5200A1A43F /* UserPost.swift */; };
+		833EE0141DEACDA700852869 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833EE0131DEACDA700852869 /* SearchViewController.swift */; };
 		97BA59448C1258C78E09C24E /* Pods_Spotted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F8D75AA17B756494975266 /* Pods_Spotted.framework */; };
 		9D3C426D1DC8750300D0644C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */; };
 		9D7568231DDBAA500049BCF8 /* AroundMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7568221DDBAA500049BCF8 /* AroundMeViewController.swift */; };
@@ -32,6 +33,7 @@
 		20C2BD531DDAEE5200A1A43F /* UserPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPost.swift; sourceTree = "<group>"; };
 		5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spotted/Pods-Spotted.release.xcconfig"; sourceTree = "<group>"; };
 		68F8D75AA17B756494975266 /* Pods_Spotted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		833EE0131DEACDA700852869 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9D7568221DDBAA500049BCF8 /* AroundMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AroundMeViewController.swift; sourceTree = "<group>"; };
 		9DD95A421DD59BC800C394BE /* UploadPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				9DD95A421DD59BC800C394BE /* UploadPostViewController.swift */,
 				2087E8381DDAE9D6005DED4D /* FollowingTableViewController.swift */,
 				20C2BD531DDAEE5200A1A43F /* UserPost.swift */,
+				833EE0131DEACDA700852869 /* SearchViewController.swift */,
 			);
 			path = Spotted;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DD95A431DD59BC800C394BE /* UploadPostViewController.swift in Sources */,
+				833EE0141DEACDA700852869 /* SearchViewController.swift in Sources */,
 				2087E8391DDAE9D6005DED4D /* FollowingTableViewController.swift in Sources */,
 				20B045141DC0618B00054293 /* ViewController.swift in Sources */,
 				9D7568231DDBAA500049BCF8 /* AroundMeViewController.swift in Sources */,

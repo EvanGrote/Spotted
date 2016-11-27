@@ -32,7 +32,7 @@
         <!--Search-->
         <scene sceneID="eTf-Po-HM3">
             <objects>
-                <viewController id="AMH-fh-VYL" sceneMemberID="viewController">
+                <viewController id="AMH-fh-VYL" customClass="SearchViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EaP-Af-4or">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

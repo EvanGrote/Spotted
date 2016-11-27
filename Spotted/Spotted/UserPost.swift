@@ -14,12 +14,16 @@ class UserPost {
     var tags: String
     var user: String
     var photo: String
+    var latitude: Double
+    var longitude: Double
     
-    init(postDescription: String, postTags: String, posterId: String, postPhoto: String) {
+    init(postDescription: String, postTags: String, posterId: String, postPhoto: String, postLatitude: Double, postLongitude: Double) {
         self.description = postDescription
         self.tags = postTags
         self.user = posterId
         self.photo = postPhoto
+        self.latitude = postLatitude
+        self.longitude = postLongitude
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -27,6 +31,8 @@ class UserPost {
         self.tags = snapshot.value(forKey: "tag") as! String
         self.user = snapshot.value(forKey: "user") as! String
         self.photo = snapshot.value(forKey: "userPhoto") as! String
+        self.latitude = snapshot.value(forKey: "latitude") as! Double
+        self.longitude = snapshot.value(forKey: "longitude") as! Double
     }
     
     func printDescription() -> Void {
@@ -50,6 +56,8 @@ class UserPost {
         print("Tags:        \(self.tags)")
         print("User:        \(self.user)")
         print("Photo:       \(self.photo)")
+        print("Latitude:    \(self.latitude)")
+        print("Longitude:   \(self.longitude)")
         print("")
     }
 }

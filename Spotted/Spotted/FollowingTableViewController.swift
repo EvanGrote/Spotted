@@ -44,8 +44,10 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                 let tag = (post as! FIRDataSnapshot).childSnapshot(forPath: "tag").value!
                 let user = (post as! FIRDataSnapshot).childSnapshot(forPath: "user").value!
                 let userPhoto = (post as! FIRDataSnapshot).childSnapshot(forPath: "userPhoto").value!
+                let userLatitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "latitude").value!
+                let userLongitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "longitude").value!
                 
-                let individualPost = UserPost.init(postDescription: description as! String, postTags: tag as! String, posterId: user as! String, postPhoto: userPhoto as! String)
+                let individualPost = UserPost.init(postDescription: description as! String, postTags: tag as! String, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
                 
                 individualPost.printPost()
                 databasePosts.append(individualPost)

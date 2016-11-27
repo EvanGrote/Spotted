@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class UploadPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class UploadPostViewController: UIViewController, UIImagePickerControllerDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let imagePicker = UIImagePickerController()
     var imageSelected:Bool = false
+    let locationManager = CLLocationManager()
+    var locValue:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
     
     @IBOutlet weak var theImageView: UIImageView!
     @IBOutlet weak var tagTextField: UITextField!
@@ -57,8 +60,8 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
             var databaseRef: FIRDatabaseReference!
             var timeStamp = String(round(NSDate().timeIntervalSince1970))
             let timeStampFormatted = String(timeStamp.characters.dropLast(2))
-            let tag = tagTextField.text
-            let description = descriptionTextField.text
+            let tag:String = tagTextField.text!
+            let description:String = descriptionTextField.text!
             let filePath = "/images/\(timeStampFormatted)"
             
             //database reference
@@ -81,8 +84,9 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
                     //store path
                     print("Storing image \(timeStampFormatted)")
                     print("image stored at: \(metaData?.path!)")
+                    let MetaDataPath:String = (metaData?.path!)!
                     //store path at database
-                    databaseRef.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"userPhoto": metaData?.path!])
+                    databaseRef.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"latitude":self.locValue.latitude,"longitude":self.locValue.longitude,"userPhoto": MetaDataPath])
                 }
             }
         } else {
@@ -110,6 +114,15 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         self.theImageView.image = nil
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locValue = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -121,6 +134,16 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UploadPostViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            //locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
+        }
     }
     
     override func didReceiveMemoryWarning() {

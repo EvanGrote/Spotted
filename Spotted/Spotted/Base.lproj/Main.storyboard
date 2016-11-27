@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="ZM2-Gp-6fc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="ZM2-Gp-6fc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vYy-3S-5Wg" kind="relationship" relationship="viewControllers" id="l8v-8e-ny1"/>
+                        <segue destination="nfp-hD-fs1" kind="relationship" relationship="viewControllers" id="l8v-8e-ny1"/>
                         <segue destination="AMH-fh-VYL" kind="relationship" relationship="viewControllers" id="wEv-h4-7JD"/>
                         <segue destination="8uN-un-VtV" kind="relationship" relationship="viewControllers" id="Yaj-cn-zxJ"/>
                         <segue destination="zC3-YD-phS" kind="relationship" relationship="viewControllers" id="mv8-oT-BWC"/>
@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="783.5" y="-404.50000000000006"/>
         </scene>
-        <!--Following-->
+        <!--Tags-->
         <scene sceneID="47g-fI-KY6">
             <objects>
                 <viewController id="vYy-3S-5Wg" customClass="FollowingTableViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,11 +84,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="H6Y-S8-6B0" customClass="CustomTableViewCell" customModule="Spotted" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="customCell" id="H6Y-S8-6B0" customClass="CustomTableViewCell" customModule="Spotted" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-S8-6B0" id="s1h-oa-b4w">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="E7M-VS-rhF">
@@ -107,6 +107,7 @@
                                         <connections>
                                             <outlet property="cellImageView" destination="E7M-VS-rhF" id="Hbh-JH-2nA"/>
                                             <outlet property="cellTagLabel" destination="J4k-uv-Abg" id="y4x-dk-gR4"/>
+                                            <segue destination="pRW-cO-eg4" kind="push" identifier="IndividualPostSegue" id="I9r-nm-3OY"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -118,7 +119,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Following" image="BinocularsIcon" id="DIs-ts-nAB"/>
+                    <navigationItem key="navigationItem" title="Tags" id="i4o-7H-dbQ"/>
                     <connections>
                         <outlet property="customTableCell" destination="gUr-Vv-YjD" id="LKe-lP-sdE"/>
                         <outlet property="theTableView" destination="gUr-Vv-YjD" id="xiV-kU-wUO"/>
@@ -126,48 +127,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKz-Yg-ppe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783.5" y="-1165.5"/>
+            <point key="canvasLocation" x="1370.5" y="-1165.5"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="A9h-ck-AfW">
-            <objects>
-                <navigationController id="VNK-ux-lrJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3lE-Pj-WCX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="pRW-cO-eg4" kind="push" id="Hje-qc-aph"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDF-eL-se5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1250" y="-1948"/>
-        </scene>
-        <!--View Controller-->
+        <!--Individual Post View-->
         <scene sceneID="Skb-QT-e3Q">
             <objects>
-                <viewController id="pRW-cO-eg4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IndividualPostViewID" id="pRW-cO-eg4" customClass="IndividualPostView" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V0n-fM-Jpi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="DPo-Qh-vz6">
-                                <rect key="frame" x="127" y="72" width="121" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Post Tags" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="voy-dF-wsv">
+                                <rect key="frame" x="16" y="80" width="343" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="List"/>
-                                    <segment title="Map"/>
-                                </segments>
-                            </segmentedControl>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="qI8-4Y-YkW">
+                                <rect key="frame" x="16" y="138" width="343" height="261"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a beautiful area to test the amount of text that a post description can hold." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vs2-ft-fTm">
+                                <rect key="frame" x="16" y="407" width="343" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ytU-mX-ZvH"/>
+                    <connections>
+                        <outlet property="individualPostDescription" destination="vs2-ft-fTm" id="lzx-TW-9A1"/>
+                        <outlet property="individualPostImageView" destination="qI8-4Y-YkW" id="xEH-HK-zSg"/>
+                        <outlet property="individualPostTag" destination="voy-dF-wsv" id="LR3-3A-LeH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pya-vA-8H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1780" y="-1948"/>
+            <point key="canvasLocation" x="1929" y="-1166"/>
         </scene>
         <!--Around Me-->
         <scene sceneID="W7m-AD-9jT">
@@ -290,6 +290,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOA-s2-8Gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="783.5" y="1102.5"/>
+        </scene>
+        <!--Following-->
+        <scene sceneID="aLy-V4-FPX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nfp-hD-fs1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Following" image="BinocularsIcon" id="DIs-ts-nAB"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6FP-Lp-4kg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vYy-3S-5Wg" kind="relationship" relationship="rootViewController" id="BVQ-xj-jND"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kBY-YD-hir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783.5" y="-1165.5"/>
         </scene>
     </scenes>
     <resources>

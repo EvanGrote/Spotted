@@ -24,11 +24,40 @@ class CustomTableViewCell: UITableViewCell {
     }
 }
 
+class IndividualPostView: UIViewController {
+    var individualPost: UserPost? = nil
+    var individualPostImage: UIImage? = nil
+    
+    @IBOutlet weak var individualPostTag: UILabel!
+    @IBOutlet weak var individualPostImageView: UIImageView!
+    @IBOutlet weak var individualPostDescription: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.individualPostTag.text = self.individualPost?.tags
+        self.individualPostImageView.image = self.individualPostImage
+        self.individualPostDescription.text = self.individualPost?.description
+        
+        self.individualPostDescription.sizeToFit()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+
 class FollowingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var customTableCell: UITableView!
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
+    var postImages: [UIImage] = []
+    
+    var rowSelected: Int = 0
+    var indexPathSelected: IndexPath? = nil
     
     override func viewDidAppear(_ animated: Bool) {
         let ref = FIRDatabase.database().reference(withPath: "posts")
@@ -84,18 +113,37 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
         
         storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) -> Void in
             if (error != nil) {
-                // Uh-oh, an error occurred!
+                // Error occurred
             } else {
                 // Data for "images/island.jpg" is returned
                 // ... let islandImage: UIImage! = UIImage(data: data!)
-                cell.cellImageView.image = UIImage(data: data!)
+                self.postImages.append(UIImage(data: data!)!)
+                cell.cellImageView.image = self.postImages[indexPath.row]
             }
         }
         
-        //cell.cellImageView =
         cell.cellTagLabel.text = self.userPosts[indexPath.row].tags
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Tag Selected: \(self.userPosts[indexPath.row].tags)")
+        
+        self.rowSelected = indexPath.row
+        self.indexPathSelected = indexPath
+        //performSegue(withIdentifier: "IndividualPostSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "IndividualPostSegue" {
+            //let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
+            let selectedIndex = self.theTableView.indexPathForSelectedRow?.row
+            
+            (segue.destination as! IndividualPostView).individualPost = self.userPosts[selectedIndex!]
+            
+            (segue.destination as! IndividualPostView).individualPostImage = self.postImages[selectedIndex!]
+        }
     }
     
     override func viewDidLoad() {

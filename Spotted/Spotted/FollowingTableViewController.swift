@@ -54,7 +54,8 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var customTableCell: UITableView!
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
-    var postImages: [UIImage] = []
+    
+    var postImageDictionary: [String:UIImage] = [:]
     
     var rowSelected: Int = 0
     var indexPathSelected: IndexPath? = nil
@@ -84,6 +85,21 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
             
             self.userPosts = databasePosts
             
+            for i in self.userPosts.indices {
+                let photoFilePath = self.userPosts[i].photo
+                let storageRef = FIRStorage.storage().reference().child(photoFilePath)
+                storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) -> Void in
+                    if (error != nil) {
+                        // Error occurred
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        // ... let islandImage: UIImage! = UIImage(data: data!)
+                        self.postImageDictionary["\(self.userPosts[i].photo)"] = UIImage(data: data!)
+                        print("Image \(self.userPosts[i].photo) was appended")
+                    }
+                }
+            }
+                
             if !(self.userPosts.isEmpty) {
                 self.theTableView.beginUpdates()
                 for i in 0...(self.userPosts.count-1) {
@@ -108,18 +124,9 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
-        let photoFilePath = self.userPosts[indexPath.row].photo
-        let storageRef = FIRStorage.storage().reference().child(photoFilePath)
         
-        storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) -> Void in
-            if (error != nil) {
-                // Error occurred
-            } else {
-                // Data for "images/island.jpg" is returned
-                // ... let islandImage: UIImage! = UIImage(data: data!)
-                self.postImages.append(UIImage(data: data!)!)
-                cell.cellImageView.image = self.postImages[indexPath.row]
-            }
+        if (self.postImageDictionary.count > 0) {
+            cell.cellImageView.image = self.postImageDictionary[self.userPosts[indexPath.row].photo]
         }
         
         cell.cellTagLabel.text = self.userPosts[indexPath.row].tags
@@ -130,19 +137,17 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Tag Selected: \(self.userPosts[indexPath.row].tags)")
         
-        self.rowSelected = indexPath.row
-        self.indexPathSelected = indexPath
         //performSegue(withIdentifier: "IndividualPostSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "IndividualPostSegue" {
-            //let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
             let selectedIndex = self.theTableView.indexPathForSelectedRow?.row
             
             (segue.destination as! IndividualPostView).individualPost = self.userPosts[selectedIndex!]
-            
-            (segue.destination as! IndividualPostView).individualPostImage = self.postImages[selectedIndex!]
+            if (self.postImageDictionary.count > 0) {
+                (segue.destination as! IndividualPostView).individualPostImage = self.postImageDictionary[self.userPosts[selectedIndex!].photo]
+            }
         }
     }
     

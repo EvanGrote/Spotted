@@ -89,6 +89,9 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
                     databaseRef.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"latitude":self.locValue.latitude,"longitude":self.locValue.longitude,"userPhoto": MetaDataPath])
                 }
             }
+            let alert = UIAlertController(title: "Image uploaded", message: "Upload success", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             viewDidDisappear(true)
         } else {
             print("No image selected")

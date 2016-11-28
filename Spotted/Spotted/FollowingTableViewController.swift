@@ -38,6 +38,7 @@ class IndividualPostView: UIViewController {
         
         self.individualPostTag.text = self.individualPost?.tags
         self.individualPostImageView.image = self.individualPostImage
+        self.individualPostImageView.contentMode = .scaleAspectFit
         self.individualPostDescription.text = self.individualPost?.description
         
         self.individualPostDescription.sizeToFit()

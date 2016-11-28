@@ -89,6 +89,7 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
                     databaseRef.child("posts").child(timeStampFormatted).setValue(["tag":tag,"user":"1234","description":description,"latitude":self.locValue.latitude,"longitude":self.locValue.longitude,"userPhoto": MetaDataPath])
                 }
             }
+            viewDidDisappear(true)
         } else {
             print("No image selected")
             let alert = UIAlertController(title: "Error", message: "Please select an image", preferredStyle: UIAlertControllerStyle.alert)

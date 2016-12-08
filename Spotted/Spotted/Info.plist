@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Uses location to add location to uploads</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Uses camera for selection of tag image upload</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Uses photo library for selection of tag image upload</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

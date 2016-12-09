@@ -61,7 +61,8 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
             //populate the map with markers for database entries
             if !(self.userPosts.isEmpty) {
                 for i in 0...(self.userPosts.count-1) {
-                    self.mapView.addAnnotation(PostMapAnnotation(userPost: self.userPosts[i]))
+                    let annotation = PostMapAnnotation(userPost: self.userPosts[i])
+                    self.mapView.addAnnotation(annotation)
                 }
             }
         })
@@ -93,13 +94,15 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
                 as? MKPinAnnotationView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
+                view.canShowCallout = true
             } else {
-                // 3
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type:.detailDisclosure) as UIView
+                view.rightCalloutAccessoryView = UIButton(type:.detailDisclosure)
             }
+            let btn = UIButton(type: .detailDisclosure)
+            view.rightCalloutAccessoryView = btn
             return view
         }
         return nil

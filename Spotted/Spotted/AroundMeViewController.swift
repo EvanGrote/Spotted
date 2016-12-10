@@ -16,7 +16,7 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
-    var locValue:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
+    var locValue:CLLocation = CLLocation.init(latitude: 0, longitude: 0)
     let regionRadius: CLLocationDistance = 1000
     var userPosts: [UserPost] = []
     
@@ -33,6 +33,8 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
             //initial location
             locationManager.requestLocation()
         }
+        
+        
 
         //download and format database entries
         let ref = FIRDatabase.database().reference(withPath: "posts")
@@ -53,7 +55,10 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
                 let individualPost = UserPost.init(postDescription: description as! String, postTags: tag as! String, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
                 
                 individualPost.printPost()
-                databasePosts.append(individualPost)
+                let meters:CLLocationDistance = self.locValue.distance(from: CLLocation.init(latitude: individualPost.latitude, longitude: individualPost.longitude))
+                if(meters.isLess(than: 1609)) {
+                    databasePosts.append(individualPost)
+                }
             }
             
             self.userPosts = databasePosts
@@ -71,9 +76,9 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //called when location manager asks for location
-        locValue = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        centerMapOnLocation(location: CLLocation(latitude: locValue.latitude, longitude: locValue.longitude))
+        locValue = manager.location!
+        print("locations = \(locValue.coordinate)")
+        centerMapOnLocation(location: locValue)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -87,8 +92,9 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? PostMapAnnotation {
-            let identifier = "pin"
+        //if let annotation = annotation as? PostMapAnnotation {
+            let identifier = String(NSDate().timeIntervalSince1970)
+        print("IDENTIFIERRRRRR  "+identifier)
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
                 as? MKPinAnnotationView { // 2
@@ -99,13 +105,13 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type:.detailDisclosure)
             }
-            let btn = UIButton(type: .detailDisclosure)
-            view.rightCalloutAccessoryView = btn
+            //let btn = UIButton(type: .detailDisclosure)
+            
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIButton
             return view
-        }
-        return nil
+        //}
+        //return nil
     }
     
     override func didReceiveMemoryWarning() {

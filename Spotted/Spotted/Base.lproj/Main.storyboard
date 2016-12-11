@@ -85,7 +85,7 @@
             </objects>
             <point key="canvasLocation" x="1370.5" y="-377.5"/>
         </scene>
-        <!--Tags-->
+        <!--Search Results View Controller-->
         <scene sceneID="Jra-6R-KcB">
             <objects>
                 <viewController id="cg2-7p-d4f" customClass="SearchResultsViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,7 +102,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ech-N6-Oa8" id="R0b-D1-yIt">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lgC-2r-HKW">
@@ -130,11 +130,31 @@
                                     <outlet property="delegate" destination="QdB-FW-PhG" id="y1z-kU-bPd"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vjr-Al-r1i">
+                                <rect key="frame" x="166" y="0.0" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tags" id="gy3-5B-idJ"/>
+                    <navigationItem key="navigationItem" id="gy3-5B-idJ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="THh-gK-8Gu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SIz-YI-fxA">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Follow"/>
+                                <connections>
+                                    <action selector="followButtonPressed:" destination="cg2-7p-d4f" eventType="touchUpInside" id="Q9e-rH-p5K"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="followingButton" destination="SIz-YI-fxA" id="rrw-Aa-6Wk"/>
                         <outlet property="theTableView" destination="gIS-ne-GcA" id="iOx-Hw-5Wd"/>
                     </connections>
                 </viewController>
@@ -217,7 +237,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-S8-6B0" id="s1h-oa-b4w">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="E7M-VS-rhF">

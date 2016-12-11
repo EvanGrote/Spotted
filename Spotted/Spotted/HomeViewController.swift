@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if StaticVariables.followingTagsCount() == 0 {
+        if userDefault.array(forKey: "followingTags") == nil {
             //no saved following tags
             print("made a new following list")
         } else {
@@ -70,7 +70,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("loaded follow list from defaults")
             StaticVariables.followingTags = userDefault.array(forKey: "followingTags") as! [String]
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

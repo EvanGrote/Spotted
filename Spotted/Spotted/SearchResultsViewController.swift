@@ -10,23 +10,12 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-//class CustomTableViewCell: UITableViewCell {
-//    @IBOutlet weak var cellImageView: UIImageView!
-//    @IBOutlet weak var cellTagLabel: UILabel!
-//    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
-//    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
-//}
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var searchString:String = ""
     
+    @IBOutlet weak var followingButton: UIButton!
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
     
@@ -37,6 +26,14 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print(StaticVariables.followingTags)
+        if StaticVariables.followingTags.contains(searchString) {
+            followingButton.setTitle("Unfollow", for: .normal)
+        } else {
+            followingButton.setTitle("Follow", for: .normal)
+        }
+
+        
         let ref = FIRDatabase.database().reference(withPath: "posts")
         
         ref.observe(.value, with: { snapshot in
@@ -101,6 +98,22 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             }
         })
     }
+    
+    @IBAction func followButtonPressed(_ sender: UIButton) {
+        if StaticVariables.followingTags.contains(searchString) {
+            print("unfollowed")
+            followingButton.setTitle("Follow", for: .normal)
+            let i = StaticVariables.followingTags.index(of: searchString)
+            StaticVariables.followingTags.remove(at: i!)
+            print(StaticVariables.followingTags)
+        } else {
+            print("now following")
+            followingButton.setTitle("Unfollow", for: .normal)
+            StaticVariables.followingTags.append(searchString)
+            print(StaticVariables.followingTags)
+        }
+    }
+    
     
     func searchStringForPartialMatch(stringToBeSearched:String, searchString:String) -> Bool {
         if stringToBeSearched.lowercased().range(of: searchString) != nil {

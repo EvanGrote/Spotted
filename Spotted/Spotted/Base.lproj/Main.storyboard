@@ -231,7 +231,7 @@
             </objects>
             <point key="canvasLocation" x="1409" y="-2281"/>
         </scene>
-        <!--Tags-->
+        <!--Recent-->
         <scene sceneID="47g-fI-KY6">
             <objects>
                 <viewController id="vYy-3S-5Wg" customClass="FollowingTableViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
@@ -279,7 +279,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tags" id="i4o-7H-dbQ"/>
+                    <navigationItem key="navigationItem" title="Recent" id="i4o-7H-dbQ"/>
                     <connections>
                         <outlet property="theTableView" destination="gUr-Vv-YjD" id="xiV-kU-wUO"/>
                     </connections>
@@ -527,7 +527,7 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="I9r-nm-3OY"/>
         <segue reference="DEE-b7-BNt"/>
-        <segue reference="ix7-Ug-Xeh"/>
     </inferredMetricsTieBreakers>
 </document>

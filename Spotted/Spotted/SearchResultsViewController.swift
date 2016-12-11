@@ -26,6 +26,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = self.searchString
+        
         print(StaticVariables.followingTags)
         if StaticVariables.followingTags.contains(searchString) {
             followingButton.setTitle("Unfollow", for: .normal)
@@ -142,13 +144,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.cellImageView.image = self.postImageDictionary[self.userPosts[indexPath.row].photo]
         }
         
-        for i in 1...self.userPosts[indexPath.row].tags.count {
-            if (i == 1) {
-                cell.cellTagLabel.text = self.userPosts[indexPath.row].tags[i-1]
-            } else {
-                cell.cellTagLabel.text?.append(", \(self.userPosts[indexPath.row].tags[i-1])")
-            }
-        }
+        cell.cellTagLabel.text = self.userPosts[indexPath.row].description
         
         return cell
     }
@@ -174,7 +170,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         theTableView.dataSource = self
-        
     }
     
     override func didReceiveMemoryWarning() {

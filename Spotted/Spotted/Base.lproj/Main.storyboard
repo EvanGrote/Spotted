@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="ZM2-Gp-6fc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="ZM2-Gp-6fc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,6 +19,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="H7o-8f-XiN" kind="relationship" relationship="viewControllers" id="Sh4-lq-cwP"/>
                         <segue destination="nfp-hD-fs1" kind="relationship" relationship="viewControllers" id="l8v-8e-ny1"/>
                         <segue destination="ZnH-BV-Lu4" kind="relationship" relationship="viewControllers" id="wEv-h4-7JD"/>
                         <segue destination="8uN-un-VtV" kind="relationship" relationship="viewControllers" id="Yaj-cn-zxJ"/>
@@ -27,7 +28,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFw-cK-J9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180.625" y="-56.694999999999993"/>
+            <point key="canvasLocation" x="95" y="-377"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="eTf-Po-HM3">
@@ -104,6 +105,52 @@
             </objects>
             <point key="canvasLocation" x="1928.5" y="-377.5"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="GE7-2H-vNz">
+            <objects>
+                <navigationController id="H7o-8f-XiN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="HomeIcon" id="lSm-Mn-qDZ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J5W-Me-1rf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NVJ-LS-kS0" kind="relationship" relationship="rootViewController" id="kFd-3s-d42"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsq-Mr-c2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="784" y="-1946"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="4YU-Yq-0HZ">
+            <objects>
+                <tableViewController id="NVJ-LS-kS0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="exx-Vn-Boo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FJv-2R-qzv">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJv-2R-qzv" id="gZY-nR-N0U">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NVJ-LS-kS0" id="P1f-ps-2eN"/>
+                            <outlet property="delegate" destination="NVJ-LS-kS0" id="Zja-Ca-p6v"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Home" id="7Zh-Jg-FIG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kd5-Q4-wW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1371" y="-1947"/>
+        </scene>
         <!--Tags-->
         <scene sceneID="47g-fI-KY6">
             <objects>
@@ -121,7 +168,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-S8-6B0" id="s1h-oa-b4w">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="E7M-VS-rhF">
@@ -189,7 +236,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yQ7-IV-xi1" id="E1l-MF-b7V">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="29.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="THIS IS A REALLY LONG TAG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a6B-2E-qPn">
@@ -347,11 +394,11 @@
             </objects>
             <point key="canvasLocation" x="783.5" y="1102.5"/>
         </scene>
-        <!--Following-->
+        <!--Recent-->
         <scene sceneID="aLy-V4-FPX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nfp-hD-fs1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Following" image="BinocularsIcon" id="DIs-ts-nAB"/>
+                    <tabBarItem key="tabBarItem" title="Recent" image="BinocularsIcon" id="DIs-ts-nAB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6FP-Lp-4kg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -389,6 +436,7 @@
     <resources>
         <image name="BinocularsIcon" width="30" height="30"/>
         <image name="CompassIcon" width="30" height="30"/>
+        <image name="HomeIcon" width="30" height="30"/>
         <image name="SearchIcon" width="30" height="30"/>
         <image name="TagIcon" width="30" height="30"/>
     </resources>

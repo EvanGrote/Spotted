@@ -89,6 +89,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             //there is a saved following list, load it
             print("loaded follow list from defaults")
             StaticVariables.followingTags = userDefault.array(forKey: "followingTags") as! [String]
+            print(StaticVariables.followingTags)
         }
         
         homeTableView.dataSource = self

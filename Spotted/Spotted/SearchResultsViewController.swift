@@ -104,12 +104,14 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             print("unfollowed")
             followingButton.setTitle("Follow", for: .normal)
             let i = StaticVariables.followingTags.index(of: searchString)
+            StaticVariables.followingTagsCount -= 1
             StaticVariables.followingTags.remove(at: i!)
             print(StaticVariables.followingTags)
         } else {
             print("now following")
             followingButton.setTitle("Unfollow", for: .normal)
             StaticVariables.followingTags.append(searchString)
+            StaticVariables.followingTagsCount += 1
             print(StaticVariables.followingTags)
         }
     }

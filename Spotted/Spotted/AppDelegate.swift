@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         userDefault.set(StaticVariables.followingTags, forKey: "followingTags")
-        //userDefault.set(StaticVariables.numberOfFollowingTags, forKey: "numberOfFollowingTags")
+        userDefault.set(StaticVariables.followingTagsCount, forKey: "followingTagsCount")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
         userDefault.set(StaticVariables.followingTags, forKey: "followingTags")
-        //userDefault.set(StaticVariables.numberOfFollowingTags, forKey: "numberOfFollowingTags")
+        userDefault.set(StaticVariables.followingTagsCount, forKey: "followingTagsCount")
     }
 
 

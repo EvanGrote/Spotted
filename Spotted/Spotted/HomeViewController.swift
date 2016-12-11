@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.followedTags = []
         self.homeTableView.reloadData()
         
-        if (StaticVariables.followingTagsCount() > 0) {
+        if (StaticVariables.followingTagsCount > 0) {
             self.followedTags = StaticVariables.followingTags
             
             self.homeTableView.beginUpdates()
@@ -82,7 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if userDefault.array(forKey: "followingTags") == nil {
+        if userDefault.integer(forKey: "followingTagsCount") == 0 {
             //no saved following tags
             print("made a new following list")
         } else {

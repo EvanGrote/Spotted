@@ -64,6 +64,16 @@ class IndividualPostView: UIViewController, UITableViewDelegate, UITableViewData
         return 30.0;//Choose your custom row height
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "IndividualPostToSearchPage" {
+            let selectedIndex = self.individualPostTableView.indexPathForSelectedRow?.row
+            
+            if let destinationVC = segue.destination as? SearchResultsViewController {
+                destinationVC.searchString = (self.individualPost?.tags[selectedIndex!])!
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -13,12 +13,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
     
-//    @IBAction func searchButtonPressed(_ sender: UIButton) {
-//        sender.setTitle(String(describing: searchTextField.text), for: UIControlState.normal)
-//        performSegue(withIdentifier: "searchResultsSegue", sender: self)
-//    }
     @IBAction func searchEditingFinished(_ sender: UITextField) {
-        //sender.setTitle(String(describing: searchTextField.text), for: UIControlState.normal)
         performSegue(withIdentifier: "searchResultsSegue", sender: self)
     }
     

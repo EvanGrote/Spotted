@@ -142,7 +142,11 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                         // Data for "images/island.jpg" is returned
                         // ... let islandImage: UIImage! = UIImage(data: data!)
                         self.postImageDictionary["\(self.userPosts[i].photo)"] = UIImage(data: data!)
-                        print("Image \(self.userPosts[i].photo) was appended")
+                        print("\(self.userPosts[i].photo) appended")
+                        
+                        DispatchQueue.main.async {
+                            self.theTableView.reloadData()
+                        }
                     }
                 }
             }
@@ -157,7 +161,6 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                 self.theTableView.endUpdates()
             }
         })
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

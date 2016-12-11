@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StaticVariables.numberOfFollowingTags
+        return StaticVariables.followingTagsCount()
     }
     
     func tableView(_ tableView: UITableView,
@@ -62,8 +62,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        StaticVariables.numberOfFollowingTags = userDefault.integer(forKey: "numberOfFollowingTags")
-        if StaticVariables.numberOfFollowingTags == 0 {
+        if StaticVariables.followingTagsCount() == 0 {
             //no saved following tags
             print("made a new following list")
         } else {

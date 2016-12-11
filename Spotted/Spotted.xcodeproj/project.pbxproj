@@ -17,6 +17,7 @@
 		20BD0A651DFD46CD00FA8330 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD0A641DFD46CD00FA8330 /* HomeViewController.swift */; };
 		20C2BD541DDAEE5200A1A43F /* UserPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C2BD531DDAEE5200A1A43F /* UserPost.swift */; };
 		833611A51DFD35E700BB272F /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833611A41DFD35E700BB272F /* StaticVariables.swift */; };
+		833611A71DFD409F00BB272F /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833611A61DFD409F00BB272F /* SearchResultsViewController.swift */; };
 		833EE0141DEACDA700852869 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833EE0131DEACDA700852869 /* SearchViewController.swift */; };
 		833EE0161DEAD6D600852869 /* PostMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833EE0151DEAD6D600852869 /* PostMapAnnotation.swift */; };
 		97BA59448C1258C78E09C24E /* Pods_Spotted.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F8D75AA17B756494975266 /* Pods_Spotted.framework */; };
@@ -40,6 +41,7 @@
 		5B957027BDE31B121C31A527 /* Pods-Spotted.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotted.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spotted/Pods-Spotted.release.xcconfig"; sourceTree = "<group>"; };
 		68F8D75AA17B756494975266 /* Pods_Spotted.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotted.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		833611A41DFD35E700BB272F /* StaticVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
+		833611A61DFD409F00BB272F /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		833EE0131DEACDA700852869 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		833EE0151DEAD6D600852869 /* PostMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostMapAnnotation.swift; sourceTree = "<group>"; };
 		9D3C426C1DC8750300D0644C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				20B045111DC0618B00054293 /* AppDelegate.swift */,
 				20B045131DC0618B00054293 /* ViewController.swift */,
 				20B045151DC0618B00054293 /* Main.storyboard */,
+				833611A61DFD409F00BB272F /* SearchResultsViewController.swift */,
 				20B045181DC0618B00054293 /* Assets.xcassets */,
 				20B0451A1DC0618B00054293 /* LaunchScreen.storyboard */,
 				20B0451D1DC0618B00054293 /* Info.plist */,
@@ -257,6 +260,7 @@
 				20BD0A631DFD44E500FA8330 /* IndividualPostView.swift in Sources */,
 				20B045121DC0618B00054293 /* AppDelegate.swift in Sources */,
 				20C2BD541DDAEE5200A1A43F /* UserPost.swift in Sources */,
+				833611A71DFD409F00BB272F /* SearchResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

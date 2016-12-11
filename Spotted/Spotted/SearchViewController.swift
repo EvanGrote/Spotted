@@ -13,8 +13,16 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!
     
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
+    @IBAction func searchEditingFinished(_ sender: UITextField) {
         performSegue(withIdentifier: "searchResultsSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchResultsSegue" {
+            if let destinationVC = segue.destination as? SearchResultsViewController {
+                destinationVC.searchString = searchTextField.text!
+            }
+        }
     }
     
     override func viewDidLoad() {

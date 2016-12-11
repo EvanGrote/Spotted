@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StaticVariables.followingTagsCount()
+        return followedTags.count
     }
     
     func tableView(_ tableView: UITableView,
@@ -91,6 +91,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("loaded follow list from defaults")
             StaticVariables.followingTags = userDefault.array(forKey: "followingTags") as! [String]
         }
+        
+        homeTableView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {

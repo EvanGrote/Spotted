@@ -26,6 +26,7 @@ class CustomTableViewCell: UITableViewCell {
 class FollowingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let userDefault = UserDefaults.standard
+    let maximumCellsDisplayed = 100
     
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
@@ -34,7 +35,7 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     
     var rowSelected: Int = 0
     var indexPathSelected: IndexPath? = nil
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let ref = FIRDatabase.database().reference(withPath: "posts")
@@ -89,9 +90,11 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
             if !(self.userPosts.isEmpty) {
                 self.theTableView.beginUpdates()
                 for i in 0...(self.userPosts.count-1) {
-                    self.theTableView.insertRows(at: [
+                    if (i < self.maximumCellsDisplayed) {
+                        self.theTableView.insertRows(at: [
                         NSIndexPath(row: i, section: 0) as IndexPath
                         ], with: .automatic)
+                    }
                 }
                 self.theTableView.endUpdates()
             }
@@ -103,7 +106,11 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userPosts.count
+        if (userPosts.count >= maximumCellsDisplayed) {
+            return maximumCellsDisplayed
+        } else {
+            return userPosts.count
+        }
     }
     
     func tableView(_ tableView: UITableView,

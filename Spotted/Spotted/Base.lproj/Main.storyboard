@@ -85,7 +85,7 @@
             </objects>
             <point key="canvasLocation" x="1370.5" y="-377.5"/>
         </scene>
-        <!--Search Results View Controller-->
+        <!--Tags-->
         <scene sceneID="Jra-6R-KcB">
             <objects>
                 <viewController id="cg2-7p-d4f" customClass="SearchResultsViewController" customModule="Spotted" customModuleProvider="target" sceneMemberID="viewController">
@@ -93,20 +93,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z79-Dp-j1n">
-                                <rect key="frame" x="16" y="77" width="343" height="21"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gIS-ne-GcA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="596"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="customCell" id="Ech-N6-Oa8" customClass="CustomTableViewCell" customModule="Spotted" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ech-N6-Oa8" id="R0b-D1-yIt">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lgC-2r-HKW">
+                                                    <rect key="frame" x="8" y="0.0" width="44" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CwA-Fz-TR7">
+                                                    <rect key="frame" x="60" y="0.0" width="307" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="lgC-2r-HKW" id="bIb-cg-yK2"/>
+                                            <outlet property="cellTagLabel" destination="CwA-Fz-TR7" id="TRn-xn-SPy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vYy-3S-5Wg" id="O1D-tm-VD3"/>
+                                    <outlet property="delegate" destination="vYy-3S-5Wg" id="FYv-wa-JDv"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="H1M-Vj-FxA"/>
-                    <connections>
-                        <outlet property="tempLabel" destination="z79-Dp-j1n" id="wxU-69-Cy7"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Tags" id="gy3-5B-idJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFN-Te-VlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

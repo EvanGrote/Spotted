@@ -23,7 +23,29 @@ class HomeTableViewCell: UITableViewCell {
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var homeTableView: UITableView!
+    
     let userDefault = UserDefaults.standard
+    var followedTags: [String] = []
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.followedTags = []
+        self.homeTableView.reloadData()
+        
+        if (StaticVariables.followingTagsCount() > 0) {
+            self.followedTags = StaticVariables.followingTags
+            
+            self.homeTableView.beginUpdates()
+            for i in 0...(followedTags.count-1) {
+                self.homeTableView.insertRows(at: [
+                    NSIndexPath(row: i, section: 0) as IndexPath
+                    ], with: .automatic)
+            }
+            self.homeTableView.endUpdates()
+        }
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -37,14 +59,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         
-        // Set cell label
-        cell.homeTableCellLabel.text = StaticVariables.followingTags[indexPath.row]
+        cell.homeTableCellLabel.text = followedTags[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Tag Selected: \(StaticVariables.followingTags[indexPath.row])")
+        print("Tag Selected: \(followedTags[indexPath.row])")
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

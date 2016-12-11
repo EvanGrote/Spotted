@@ -25,7 +25,6 @@ class CustomTableViewCell: UITableViewCell {
 
 class FollowingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let userDefault = UserDefaults.standard
     let maximumCellsDisplayed = 100
     
     @IBOutlet weak var theTableView: UITableView!
@@ -33,9 +32,6 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     
     var postImageDictionary: [String:UIImage] = [:]
     
-    var rowSelected: Int = 0
-    var indexPathSelected: IndexPath? = nil
-        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let ref = FIRDatabase.database().reference(withPath: "posts")

@@ -60,27 +60,18 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                 let userLongitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "longitude").value!
                 
                 let individualPost = UserPost.init(postDescription: description as! String, postTags: tagArray, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
+                print("starting to filter tags")
+                //databasePosts.append(individualPost)
                 for tag in individualPost.tags {
+                    individualPost.printPost()
                     if (self.searchStringForPartialMatch(stringToBeSearched: tag, searchString: self.searchString)) {
-                        individualPost.printPost()
                         databasePosts.append(individualPost)
                     }
                 }
             }
             
-            
-            
-//            //filter
-//            for i in databasePosts.indices {
-//                for tag in databasePosts[i].tags{
-//                    if searchStringForPartialMatch(stringToBeSearched: tag, searchString: searchString) {
-//                        
-//                    }
-//                }
-//            }
-            
             self.userPosts = databasePosts
-            
+            if !(self.userPosts.isEmpty) {
             for i in self.userPosts.indices {
                 let photoFilePath = self.userPosts[i].photo
                 let storageRef = FIRStorage.storage().reference().child(photoFilePath)
@@ -100,7 +91,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
             
-            if !(self.userPosts.isEmpty) {
                 self.theTableView.beginUpdates()
                 for i in 0...(self.userPosts.count-1) {
                     self.theTableView.insertRows(at: [
@@ -114,10 +104,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func searchStringForPartialMatch(stringToBeSearched:String, searchString:String) -> Bool {
         if stringToBeSearched.lowercased().range(of: searchString) != nil {
-            //print("string matches")
+            print("string matches")
             return true
         }
-        //print("String does not match")
+        print("String does not match")
         return false
     }
     
@@ -131,7 +121,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customSearchCell", for: indexPath) as! CustomTableViewCell
         
         if (self.postImageDictionary.count > 0) {
             cell.cellImageView.image = self.postImageDictionary[self.userPosts[indexPath.row].photo]
@@ -155,7 +145,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "IndividualPostSegue" {
+        if segue.identifier == "GoToIndividualPostSegue" {
             let selectedIndex = self.theTableView.indexPathForSelectedRow?.row
             
             (segue.destination as! IndividualPostView).individualPost = self.userPosts[selectedIndex!]
@@ -168,6 +158,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        theTableView.dataSource = self
         
     }
     

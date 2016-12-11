@@ -68,16 +68,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("Tag Selected: \(followedTags[indexPath.row])")
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "IndividualPostSegue" {
-//            let selectedIndex = self.theTableView.indexPathForSelectedRow?.row
-//            
-//            (segue.destination as! IndividualPostView).individualPost = self.userPosts[selectedIndex!]
-//            if (self.postImageDictionary.count > 0) {
-//                (segue.destination as! IndividualPostView).individualPostImage = self.postImageDictionary[self.userPosts[selectedIndex!].photo]
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToSearchPage" {
+            let selectedIndex = self.homeTableView.indexPathForSelectedRow?.row
+            
+            if let destinationVC = segue.destination as? SearchResultsViewController {
+                destinationVC.searchString = self.followedTags[selectedIndex!]
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

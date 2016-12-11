@@ -47,12 +47,18 @@ class AroundMeViewController: UIViewController, CLLocationManagerDelegate, MKMap
             for post in snapshot.children {
                 let description = (post as! FIRDataSnapshot).childSnapshot(forPath: "description").value!
                 let tag = (post as! FIRDataSnapshot).childSnapshot(forPath: "tag").value!
+                
+                var delimitingCharacterSet = CharacterSet()
+                delimitingCharacterSet.insert(charactersIn: " \",./<>?'`~!@#$%^&*()-_+=;:[]{}|")
+                
+                let tagArray = (tag as! String).components(separatedBy: delimitingCharacterSet)
+                
                 let user = (post as! FIRDataSnapshot).childSnapshot(forPath: "user").value!
                 let userPhoto = (post as! FIRDataSnapshot).childSnapshot(forPath: "userPhoto").value!
                 let userLatitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "latitude").value!
                 let userLongitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "longitude").value!
                 
-                let individualPost = UserPost.init(postDescription: description as! String, postTags: tag as! String, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
+                let individualPost = UserPost.init(postDescription: description as! String, postTags: tagArray, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
                 
                 individualPost.printPost()
                 let meters:CLLocationDistance = self.locValue.distance(from: CLLocation.init(latitude: individualPost.latitude, longitude: individualPost.longitude))

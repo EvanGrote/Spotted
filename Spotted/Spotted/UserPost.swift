@@ -11,15 +11,16 @@ import Firebase
 
 class UserPost {
     var description: String
-    var tags: String
+    var tags: [String] = []
     var user: String
     var photo: String
     var latitude: Double
     var longitude: Double
     
-    init(postDescription: String, postTags: String, posterId: String, postPhoto: String, postLatitude: Double, postLongitude: Double) {
+    init(postDescription: String, postTags: [String], posterId: String, postPhoto: String, postLatitude: Double, postLongitude: Double) {
         self.description = postDescription
-        self.tags = postTags
+        self.tags.append(contentsOf: postTags)
+        //self.tags = postTags
         self.user = posterId
         self.photo = postPhoto
         self.latitude = postLatitude
@@ -28,7 +29,7 @@ class UserPost {
     
     init(snapshot: FIRDataSnapshot) {
         self.description = snapshot.value(forKey: "description") as! String
-        self.tags = snapshot.value(forKey: "tag") as! String
+        self.tags = [snapshot.value(forKey: "tag") as! String]
         self.user = snapshot.value(forKey: "user") as! String
         self.photo = snapshot.value(forKey: "userPhoto") as! String
         self.latitude = snapshot.value(forKey: "latitude") as! Double

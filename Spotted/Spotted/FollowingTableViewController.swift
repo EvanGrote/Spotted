@@ -152,16 +152,6 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        StaticVariables.numberOfFollowingTags = userDefault.integer(forKey: "numberOfFollowingTags")
-        if StaticVariables.numberOfFollowingTags == 0 {
-            //no saved following tags
-            print("made a new following list")
-        } else {
-            //there is a saved following list, load it
-            print("loaded follow list from defaults")
-            StaticVariables.followingTags = userDefault.array(forKey: "followingTags") as! [String]
-        }
-        
     }
     
     override func didReceiveMemoryWarning() {

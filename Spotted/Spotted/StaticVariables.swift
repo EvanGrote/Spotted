@@ -10,5 +10,8 @@ import UIKit
 
 struct StaticVariables {
     static var followingTags:[String] = []
-    static var numberOfFollowingTags:Int = 0
+    
+    static func followingTagsCount() -> Int {
+        return self.followingTags.count
+    }
 }

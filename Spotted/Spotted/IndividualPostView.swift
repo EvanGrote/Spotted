@@ -32,7 +32,7 @@ class IndividualPostView: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         self.individualPostImageView.image = self.individualPostImage
-        self.individualPostImageView.contentMode = .scaleAspectFit
+        
         self.individualPostDescription.text = self.individualPost?.description
         
         self.individualPostDescription.sizeToFit()

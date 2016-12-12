@@ -3,37 +3,39 @@
 //  Spotted
 //
 //  Created by Evan Grote on 11/15/16.
-//  Copyright © 2016 Evan Grote. All rights reserved.
+//  Copyright © 2016 Christopher Boswell, Evan Grote. All rights reserved.
 //
 
 import UIKit
 import Firebase
 import FirebaseStorage
 
-class CustomTableViewCell: UITableViewCell {
-    @IBOutlet weak var cellImageView: UIImageView!
-    @IBOutlet weak var cellTagLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-}
 
-class FollowingTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let maximumCellsDisplayed = 100
+    var searchString:String = ""
     
+    @IBOutlet weak var followingButton: UIButton!
     @IBOutlet weak var theTableView: UITableView!
     var userPosts: [UserPost] = []
     
     var postImageDictionary: [String:UIImage] = [:]
     
+    var rowSelected: Int = 0
+    var indexPathSelected: IndexPath? = nil
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = self.searchString
+        
+        print(StaticVariables.followingTags)
+        if StaticVariables.followingTags.contains(searchString) {
+            followingButton.setTitle("Unfollow", for: .normal)
+        } else {
+            followingButton.setTitle("Follow", for: .normal)
+        }
+
+        
         let ref = FIRDatabase.database().reference(withPath: "posts")
         
         ref.observe(.value, with: { snapshot in
@@ -57,13 +59,18 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                 let userLongitude = (post as! FIRDataSnapshot).childSnapshot(forPath: "longitude").value!
                 
                 let individualPost = UserPost.init(postDescription: description as! String, postTags: tagArray, posterId: user as! String, postPhoto: userPhoto as! String, postLatitude: userLatitude as! Double, postLongitude: userLongitude as! Double)
-                
-                individualPost.printPost()
-                databasePosts.append(individualPost)
+                print("starting to filter tags")
+                //databasePosts.append(individualPost)
+                for tag in individualPost.tags {
+                    individualPost.printPost()
+                    if (self.searchStringForPartialMatch(stringToBeSearched: tag, searchString: self.searchString)) {
+                        databasePosts.append(individualPost)
+                    }
+                }
             }
             
             self.userPosts = databasePosts
-            
+            if !(self.userPosts.isEmpty) {
             for i in self.userPosts.indices {
                 let photoFilePath = self.userPosts[i].photo
                 let storageRef = FIRStorage.storage().reference().child(photoFilePath)
@@ -82,19 +89,43 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                     }
                 }
             }
-                
-            if !(self.userPosts.isEmpty) {
+            
                 self.theTableView.beginUpdates()
                 for i in 0...(self.userPosts.count-1) {
-                    if (i < self.maximumCellsDisplayed) {
-                        self.theTableView.insertRows(at: [
+                    self.theTableView.insertRows(at: [
                         NSIndexPath(row: i, section: 0) as IndexPath
                         ], with: .automatic)
-                    }
                 }
                 self.theTableView.endUpdates()
             }
         })
+    }
+    
+    @IBAction func followButtonPressed(_ sender: UIButton) {
+        if StaticVariables.followingTags.contains(searchString) {
+            print("unfollowed")
+            followingButton.setTitle("Follow", for: .normal)
+            let i = StaticVariables.followingTags.index(of: searchString)
+            StaticVariables.followingTagsCount -= 1
+            StaticVariables.followingTags.remove(at: i!)
+            print(StaticVariables.followingTags)
+        } else {
+            print("now following")
+            followingButton.setTitle("Unfollow", for: .normal)
+            StaticVariables.followingTags.append(searchString)
+            StaticVariables.followingTagsCount += 1
+            print(StaticVariables.followingTags)
+        }
+    }
+    
+    
+    func searchStringForPartialMatch(stringToBeSearched:String, searchString:String) -> Bool {
+        if stringToBeSearched.lowercased().range(of: searchString.lowercased()) != nil {
+            print("string matches")
+            return true
+        }
+        print("String does not match")
+        return false
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,28 +133,18 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (userPosts.count >= maximumCellsDisplayed) {
-            return maximumCellsDisplayed
-        } else {
-            return userPosts.count
-        }
+        return userPosts.count
     }
     
     func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customSearchCell", for: indexPath) as! CustomTableViewCell
         
         if (self.postImageDictionary.count > 0) {
             cell.cellImageView.image = self.postImageDictionary[self.userPosts[indexPath.row].photo]
         }
         
-        for i in 1...self.userPosts[indexPath.row].tags.count {
-            if (i == 1) {
-                cell.cellTagLabel.text = self.userPosts[indexPath.row].tags[i-1]
-            } else {
-                cell.cellTagLabel.text?.append(", \(self.userPosts[indexPath.row].tags[i-1])")
-            }
-        }
+        cell.cellTagLabel.text = self.userPosts[indexPath.row].description
         
         return cell
     }
@@ -135,7 +156,7 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "IndividualPostSegue" {
+        if segue.identifier == "GoToIndividualPostSegue" {
             let selectedIndex = self.theTableView.indexPathForSelectedRow?.row
             
             (segue.destination as! IndividualPostView).individualPost = self.userPosts[selectedIndex!]
@@ -148,6 +169,7 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        theTableView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {

@@ -134,6 +134,8 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         self.addTagsTextField.delegate = self
         self.descriptionTextField.delegate = self
+        addTagsTextField.returnKeyType = UIReturnKeyType.done
+        descriptionTextField.returnKeyType = UIReturnKeyType.done
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UploadPostViewController.dismissKeyboard))
         

@@ -3,7 +3,7 @@
 //  Spotted
 //
 //  Created by Evan Grote on 12/11/16.
-//  Copyright © 2016 Evan Grote. All rights reserved.
+//  Copyright © 2016 Evan Grote, Christopher Boswell. All rights reserved.
 //
 
 import UIKit

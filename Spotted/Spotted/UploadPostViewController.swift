@@ -3,7 +3,7 @@
 //  Spotted
 //
 //  Created by Christopher Boswell on 11/9/16.
-//  Copyright © 2016 Christopher Boswell. All rights reserved.
+//  Copyright © 2016 Christopher Boswell, Evan Grote. All rights reserved.
 //
 
 import UIKit
@@ -141,13 +141,11 @@ class UploadPostViewController: UIViewController, UIImagePickerControllerDelegat
         
         view.addGestureRecognizer(tap)
         
-        // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            //locationManager.startUpdatingLocation()
             locationManager.requestLocation()
         }
     }

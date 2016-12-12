@@ -130,8 +130,6 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Tag Selected: \(self.userPosts[indexPath.row].tags)")
-        
-        //performSegue(withIdentifier: "IndividualPostSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

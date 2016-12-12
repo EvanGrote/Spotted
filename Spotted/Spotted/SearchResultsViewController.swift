@@ -120,7 +120,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func searchStringForPartialMatch(stringToBeSearched:String, searchString:String) -> Bool {
-        if stringToBeSearched.lowercased().range(of: searchString) != nil {
+        if stringToBeSearched.lowercased().range(of: searchString.lowercased()) != nil {
             print("string matches")
             return true
         }

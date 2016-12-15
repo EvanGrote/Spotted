@@ -68,7 +68,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }
             }
-            
+            self.userPosts = self.userPosts.reversed()
             self.userPosts = databasePosts
             if !(self.userPosts.isEmpty) {
             for i in self.userPosts.indices {

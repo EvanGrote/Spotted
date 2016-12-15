@@ -61,8 +61,7 @@ class FollowingTableViewController: UIViewController, UITableViewDelegate, UITab
                 individualPost.printPost()
                 databasePosts.append(individualPost)
             }
-            self.userPosts = self.userPosts.reversed()
-            self.userPosts = databasePosts
+            self.userPosts = databasePosts.reversed()
             
             for i in self.userPosts.indices {
                 let photoFilePath = self.userPosts[i].photo

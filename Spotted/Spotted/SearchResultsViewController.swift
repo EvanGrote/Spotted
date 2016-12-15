@@ -68,8 +68,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }
             }
-            self.userPosts = self.userPosts.reversed()
-            self.userPosts = databasePosts
+            self.userPosts = databasePosts.reversed()
             if !(self.userPosts.isEmpty) {
             for i in self.userPosts.indices {
                 let photoFilePath = self.userPosts[i].photo
